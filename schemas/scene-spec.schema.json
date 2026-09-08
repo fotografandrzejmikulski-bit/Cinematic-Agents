@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/fotografandrzejmikulski-bit/Cinematic-Agents/blob/main/schemas/scene-spec.schema.json",
+  "title": "Cinematic 8-Second Scene Specification",
+  "type": "object",
+  "required": ["scene_id","duration_seconds","intent","start_state","end_state","subjects","environment","camera","optics","lighting","performance","physics","sound","edit","generation","continuity","qc"],
+  "properties": {
+    "scene_id": {"type":"string"},
+    "duration_seconds": {"const":8},
+    "intent": {"type":"object","required":["dramatic","visual","emotional"],"properties":{"dramatic":{"type":"string"},"visual":{"type":"string"},"emotional":{"type":"string"}}},
+    "start_state": {"type":"object"},
+    "end_state": {"type":"object"},
+    "subjects": {"type":"array","items":{"type":"object","required":["id","identity_lock"]}},
+    "environment": {"type":"object"},
+    "camera": {"type":"object","required":["position","framing","motion","motivation"]},
+    "optics": {"type":"object","required":["lens_mm","aperture","focus_strategy"]},
+    "lighting": {"type":"object","required":["key","fill","rim_or_edge","practicals","exposure_logic"]},
+    "performance": {"type":"object","required":["blocking","gaze","gesture_beats","emotional_timing"]},
+    "physics": {"type":"object","required":["gravity","motion_constraints","interaction_constraints"]},
+    "sound": {"type":"object","required":["dialogue","ambience","foley","sfx","perspective"]},
+    "edit": {"type":"object","required":["in_point","out_point","transition_intent","causal_link"]},
+    "generation": {"type":"object","required":["provider","model","prompt","negative_constraints","parameters","references"]},
+    "continuity": {"type":"object","required":["previous_scene_refs","identity_refs","spatial_refs","state_version"]},
+    "qc": {"type":"object","required":["acceptance_criteria","failure_modes","release_threshold"]}
+  }
+}
