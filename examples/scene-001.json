@@ -1,0 +1,95 @@
+{
+  "scene_id": "SC001_SH001",
+  "duration_seconds": 8,
+  "intent": {
+    "dramatic": "The protagonist realizes the room is not empty.",
+    "visual": "Reveal a second presence without cutting.",
+    "emotional": "Controlled dread escalating into alertness."
+  },
+  "start_state": {
+    "subject_position": "standing near doorway",
+    "screen_direction": "left_to_right",
+    "environment_state": "still air, practical lamp on"
+  },
+  "end_state": {
+    "subject_position": "half-turned toward background presence",
+    "attention_state": "locked on off-axis movement"
+  },
+  "subjects": [
+    {
+      "id": "character_A",
+      "identity_lock": {
+        "face": "locked",
+        "hair": "locked",
+        "wardrobe": "dark wool coat, unchanged",
+        "age_range": "adult"
+      }
+    }
+  ],
+  "environment": {
+    "location": "old apartment hallway",
+    "materials": ["aged plaster", "wood", "brass"],
+    "props": ["coat rack", "table lamp"]
+  },
+  "camera": {
+    "position": "eye level, 1.6m behind subject",
+    "framing": "medium-wide over-shoulder",
+    "motion": "slow 35cm lateral dolly right",
+    "motivation": "camera follows the subject's attention shift"
+  },
+  "optics": {
+    "lens_mm": 50,
+    "aperture": "T2.8",
+    "focus_strategy": "subject lock, then subtle rack toward background movement"
+  },
+  "lighting": {
+    "key": "soft motivated tungsten practical",
+    "fill": "minimal ambient bounce",
+    "rim_or_edge": "cool edge from distant window",
+    "practicals": ["table lamp"],
+    "exposure_logic": "protect practical highlight while retaining shadow detail"
+  },
+  "performance": {
+    "blocking": "subject takes one restrained step and pauses",
+    "gaze": "forward, then 20-degree turn toward background",
+    "gesture_beats": ["breath stops", "shoulders tighten", "head turns"],
+    "emotional_timing": "calm 0-4s; recognition 4-6s; alertness 6-8s"
+  },
+  "physics": {
+    "gravity": "earth-normal",
+    "motion_constraints": "human acceleration and deceleration only",
+    "interaction_constraints": "coat follows body inertia; lamp remains stationary"
+  },
+  "sound": {
+    "dialogue": "none",
+    "ambience": "low HVAC hum and distant city noise",
+    "foley": "coat fabric, restrained footstep",
+    "sfx": "faint unseen movement behind subject",
+    "perspective": "background movement filtered by room occlusion"
+  },
+  "edit": {
+    "in_point": "after previous scene's door close",
+    "out_point": "on eye-line lock toward background",
+    "transition_intent": "hard cut to reveal shot",
+    "causal_link": "attention shift motivates next scene"
+  },
+  "generation": {
+    "provider": "provider-adapter-placeholder",
+    "model": "model-adapter-placeholder",
+    "prompt": "8-second cinematic continuous shot; grounded live-action realism; restrained performance; slow motivated lateral dolly; 50mm optical behavior; practical tungsten key; subtle cool window edge; controlled dread; physically plausible cloth and body inertia; no surreal motion",
+    "negative_constraints": ["identity drift", "extra fingers", "rubber motion", "floating props", "camera teleportation", "unmotivated lighting change", "lens morphing"],
+    "parameters": {},
+    "references": []
+  },
+  "continuity": {
+    "previous_scene_refs": [],
+    "identity_refs": ["character_A.identity.v1"],
+    "spatial_refs": ["hallway.layout.v1"],
+    "state_version": "SC001.v1"
+  },
+  "qc": {
+    "acceptance_criteria": ["identity stable", "motion plausible", "camera path coherent", "lighting consistent", "attention shift readable"],
+    "failure_modes": ["face drift", "focus error", "mechanical camera movement"],
+    "release_threshold": "no P0 or P1 defects"
+  }
+}
