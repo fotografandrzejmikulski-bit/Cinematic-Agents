@@ -1,0 +1,15 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://github.com/fotografandrzejmikulski-bit/Cinematic-Agents/blob/main/schemas/qc-report.schema.json",
+  "title":"Cinematic QC Report",
+  "type":"object",
+  "required":["artifact_id","auditor","status","issues","acceptance_checks"],
+  "properties":{
+    "artifact_id":{"type":"string"},
+    "auditor":{"type":"string"},
+    "status":{"enum":["APPROVED","REVISION_REQUIRED","RELEASE_BLOCKED"]},
+    "issues":{"type":"array","items":{"type":"object","required":["severity","category","description","repair"]}},
+    "acceptance_checks":{"type":"array","items":{"type":"object","required":["check","passed"] ,"properties":{"check":{"type":"string"},"passed":{"type":"boolean"},"evidence":{"type":"string"}}}},
+    "residual_risks":{"type":"array","items":{"type":"string"}}
+  }
+}
