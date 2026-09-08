@@ -1,0 +1,107 @@
+version: "1.0"
+name: Cinematic Agent Swarm Ω∞
+mode: directed_multi_agent_graph
+atomic_scene_duration_seconds: 8
+
+nodes:
+  - cinematic-commander
+  - story-architect
+  - screenwriter
+  - character-architect
+  - dop
+  - lens-optics
+  - lighting-director
+  - production-designer
+  - performance-director
+  - physics-motion
+  - sound-director
+  - music-director
+  - editor
+  - vfx-supervisor
+  - generative-video-architect
+  - continuity-intelligence
+  - visual-qc
+  - final-master-auditor
+
+edges:
+  - [cinematic-commander, story-architect]
+  - [story-architect, screenwriter]
+  - [story-architect, character-architect]
+  - [cinematic-commander, dop]
+  - [cinematic-commander, production-designer]
+  - [dop, lens-optics]
+  - [dop, lighting-director]
+  - [character-architect, performance-director]
+  - [production-designer, performance-director]
+  - [performance-director, physics-motion]
+  - [production-designer, physics-motion]
+  - [cinematic-commander, sound-director]
+  - [cinematic-commander, music-director]
+  - [screenwriter, editor]
+  - [cinematic-commander, generative-video-architect]
+  - [dop, generative-video-architect]
+  - [lens-optics, generative-video-architect]
+  - [lighting-director, generative-video-architect]
+  - [production-designer, generative-video-architect]
+  - [performance-director, generative-video-architect]
+  - [physics-motion, generative-video-architect]
+  - [vfx-supervisor, generative-video-architect]
+  - [generative-video-architect, continuity-intelligence]
+  - [continuity-intelligence, visual-qc]
+  - [visual-qc, cinematic-commander]
+  - [editor, cinematic-commander]
+  - [sound-director, cinematic-commander]
+  - [music-director, cinematic-commander]
+  - [final-master-auditor, cinematic-commander]
+
+execution_stages:
+  - id: 01_development
+    parallel: [story-architect, production-designer]
+    gate: cinematic-commander
+  - id: 02_script
+    serial: [screenwriter, character-architect]
+    gate: cinematic-commander
+  - id: 03_visual_language
+    parallel: [dop, production-designer]
+    dependent: [02_script]
+    gate: cinematic-commander
+  - id: 04_physical_performance
+    parallel: [performance-director, physics-motion]
+    dependent: [03_visual_language]
+    gate: dop
+  - id: 05_optics_light
+    parallel: [lens-optics, lighting-director]
+    dependent: [03_visual_language]
+    gate: dop
+  - id: 06_audio_editorial
+    parallel: [sound-director, music-director, editor]
+    dependent: [02_script, 04_physical_performance]
+    gate: cinematic-commander
+  - id: 07_generation
+    serial: [vfx-supervisor, generative-video-architect]
+    dependent: [04_physical_performance, 05_optics_light, 06_audio_editorial]
+  - id: 08_continuity_qc
+    serial: [continuity-intelligence, visual-qc]
+    dependent: [07_generation]
+  - id: 09_master
+    serial: [final-master-auditor]
+    dependent: [08_continuity_qc, 06_audio_editorial]
+    gate: release
+
+feedback_loops:
+  - from: visual-qc
+    to: generative-video-architect
+    condition: release_blocking_defect
+  - from: continuity-intelligence
+    to: generative-video-architect
+    condition: continuity_violation
+  - from: final-master-auditor
+    to: cinematic-commander
+    condition: master_rejection
+
+policy:
+  no_self_certification: true
+  require_independent_qc: true
+  preserve_scene_state_versions: true
+  forbid_untracked_prompt_changes: true
+  max_regeneration_attempts_per_shot: 5
