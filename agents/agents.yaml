@@ -1,0 +1,121 @@
+version: "1.0"
+project: cinematic-agents
+team: Cinematic Agent Swarm Ω∞
+
+agents:
+  - id: cinematic-commander
+    name: Cinematic Commander
+    role: chief_orchestrator
+    authority: final
+    outputs: [master_brief, decisions, approvals, revision_orders]
+    receives: [project_intent, all_agent_reports]
+
+  - id: story-architect
+    name: Story Architect
+    role: narrative_architecture
+    outputs: [story_bible, dramaturgical_map, thematic_system, sequence_plan]
+    receives: [project_intent]
+
+  - id: screenwriter
+    name: Screenwriter
+    role: screenplay
+    outputs: [script, dialogue, scene_beats, subtext]
+    receives: [story_bible, dramaturgical_map]
+
+  - id: character-architect
+    name: Character Architect
+    role: character_systems
+    outputs: [character_bible, identity_lock, psychology, objectives, arcs]
+    receives: [story_bible, script]
+
+  - id: dop
+    name: Director of Photography
+    role: cinematography
+    outputs: [shot_grammar, framing, exposure, camera_plan]
+    receives: [master_brief, sequence_plan, script, character_bible]
+
+  - id: lens-optics
+    name: Lens & Optics Specialist
+    role: optics
+    outputs: [lens_plan, focal_lengths, optical_signature, focus_plan]
+    receives: [camera_plan, shot_grammar]
+
+  - id: lighting-director
+    name: Lighting Director
+    role: lighting
+    outputs: [lighting_plan, exposure_logic, practicals, continuity_rules]
+    receives: [camera_plan, lens_plan, production_design]
+
+  - id: production-designer
+    name: Production Designer
+    role: world_and_mise_en_scene
+    outputs: [set_bible, prop_bible, material_palette, spatial_layout]
+    receives: [master_brief, script, character_bible]
+
+  - id: performance-director
+    name: Performance Director
+    role: actor_and_motion_performance
+    outputs: [blocking, gaze_plan, gesture_beats, emotional_timing]
+    receives: [character_bible, scene_beats, camera_plan, spatial_layout]
+
+  - id: physics-motion
+    name: Physics & Motion Supervisor
+    role: physical_plausibility
+    outputs: [motion_constraints, collision_rules, cloth_hair_particle_rules, temporal_motion_notes]
+    receives: [blocking, spatial_layout, camera_plan]
+
+  - id: sound-director
+    name: Sound Director
+    role: sound_design
+    outputs: [soundscape, ambience, foley_plan, sfx_plan, perspective_map]
+    receives: [script, shot_grammar, blocking, edit_plan]
+
+  - id: music-director
+    name: Music Director
+    role: score_and_music
+    outputs: [score_bible, motifs, instrumentation, cue_map]
+    receives: [story_bible, scene_beats, edit_plan]
+
+  - id: editor
+    name: Editor
+    role: editorial
+    outputs: [edit_plan, rhythm_map, transitions, coverage_logic]
+    receives: [script, scene_specs, sound_plan, music_plan]
+
+  - id: vfx-supervisor
+    name: VFX Supervisor
+    role: visual_effects
+    outputs: [vfx_plan, compositing_notes, simulation_notes, cleanup_plan]
+    receives: [scene_specs, physics_constraints, production_design, lighting_plan]
+
+  - id: generative-video-architect
+    name: Generative Video Architect
+    role: generation_engineering
+    outputs: [model_selection, compiled_prompts, parameters, reference_strategy, regeneration_plan]
+    receives: [master_brief, camera_plan, optics, lighting, design, performance, physics, sound, vfx]
+
+  - id: continuity-intelligence
+    name: Continuity Intelligence
+    role: continuity_state
+    outputs: [continuity_ledger, identity_checks, geography_checks, temporal_state]
+    receives: [scene_specs, generation_results, character_bible, set_bible]
+
+  - id: visual-qc
+    name: Visual QC Auditor
+    role: independent_visual_quality_control
+    outputs: [qc_report, defect_severity, repair_instructions, release_status]
+    receives: [generation_results, continuity_ledger, scene_specs]
+
+  - id: final-master-auditor
+    name: Final Master Auditor
+    role: final_quality_gate
+    authority: release_gate
+    outputs: [master_audit, residual_risks, approval_or_rejection]
+    receives: [story, cinematography, sound, music, edit, vfx, continuity, visual_qc]
+
+contracts:
+  handoff_policy: immutable_versioned_artifacts
+  state_policy: explicit_machine_readable_state
+  qc_policy: independent_verification
+  regeneration_policy: targeted_revision_only
+  atomic_duration_seconds: 8
