@@ -1,0 +1,10 @@
+services:
+  cinematic-agents:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      CINEMATIC_ENVIRONMENT: production
+      CINEMATIC_REQUIRE_API_KEY: "false"
+      CINEMATIC_OPENAI_MODEL: gpt-5.6
+    restart: unless-stopped
